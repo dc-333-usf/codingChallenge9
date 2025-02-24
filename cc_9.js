@@ -70,6 +70,17 @@ class Company { //create a new company class
     calculateTotalPayroll() { //Task 4
         return this.employees.reduce((total, emp) => total + (emp.salary * 12 + (emp instanceof Manager ? emp.salary * 12 * 0.1 : 0)), 0); //this would've been a lot easier if I had saved the bonus and annual salary as their own variables, but this will calculate the total payroll regardless
     }; //in this method, we have it return the employees array, with each instance of the salary being added to the accumulator. It also checks if the instance is part of the Manager class, accounting for the added cost of their bonus
+
+    promoteToManager(emp, teamSize) { //Task 5
+        const index = this.employees.indexOf(emp); //set the constant "index" equal to the index of the specified employee in the employees array
+        if (index !== -1) { //check to see if the index is not -1. If it is, the employee was not found
+            this.employees.splice(index, 1); //then, remove one item of the array at the index of the employee
+            const newManager = new Manager(emp.name, emp.id, emp.department, emp.salary, teamSize); //create a new instance of the manager class using the removed employee, inputting all of their data from the array and adding on the teamSize property, only for managers
+            this.employees.push(newManager); //push the new manager back to the employees array with the updated information
+        } else { //if the index does equal -1, the employee was not found
+            console.log(`Employee not found.`); //send an error message
+        }
+    };
 }
 
 const company = new Company("TechCorp"); //create a constant, "comapny" to be a new company class named TechCorp
@@ -78,7 +89,9 @@ company.addEmployee(mgr1); //same thing, but for the manager
 company.listEmployees(); //console log the employees array, modified by the listEmployees method in the company class.
 
 //Task 4: Implementing a payroll system. HR department scenario.
-console.log(company.calculateTotalPayroll()); //test data
-console.log(mgr1.calculateAnnualSalary());
+console.log(company.calculateTotalPayroll());
+console.log(mgr1.calculateAnnualSalary()); //test data
 
 //Task 5: Implementing promotions. Company promotion scenario.
+company.promoteToManager(emp1, 3);
+company.listEmployees(); //test data
