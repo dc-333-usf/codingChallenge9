@@ -21,7 +21,7 @@ calculateAnnualSalary() { //create a method like the last one, but calculating a
 
 const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000); //create a new employee in the class, specfiying the data
 console.log(emp1.getDetails());
-console.log(emp1.calculateAnnualSalary());
+console.log(emp1.calculateAnnualSalary()); //test data
 
 
 //Task 2: Creating a manager class. Inheritance and method overriding.
@@ -40,8 +40,8 @@ calculateBonus() { //specify a method in this class to calculate a bonus for the
     return `Manager bonus: ${(this.salary * 12) * 0.1}` //return the salary of the manager times 0.1, or ten percent of their salary
 };
 
-calculateAnnualSalary() {
-    return `Total salary (including bonus): ${(this.salary * 12) + (this.salary * 12 * 0.1)}`;
+calculateAnnualSalary() { //Task 4. overwrite the method from the Employee class to include the bonus. 
+    return `Total salary (including bonus): ${(this.salary * 12) + (this.salary * 12 * 0.1)}`; //return the salary plus bonus
 };
 };
 
